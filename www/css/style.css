@@ -1,0 +1,38 @@
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+#header{
+    width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 999;
+	
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    height: 80px;
+
+    background-color: white;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+
+    transition: all 1s;
+}
+
+#header.on {
+    position: fixed;
+    height: 50px;
+}
+
+
+.contents{
+    padding-top: 120px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
