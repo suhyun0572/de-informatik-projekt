@@ -5,19 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>tetris_project</title>
+    <script src="../../bazel-bin/lib/frontend/scripts/frame.js"></script>
+    <link type="text/css" rel="stylesheet" href="./css/style.css"></link>
 </head>
-<body>
-    <center>
-        <canvas id="gamePlay" width="1000" height="1000" style="border:1px solid #000000;">
-        </canvas>
-    </center>
-    <script>
-        var c = document.getElementById("gamePlay");
-        var ctx = c.getContext("2d");
-        ctx.moveTo(0, 0);
-        ctx.lineTo(200, 100);
-        ctx.stroke();
-    </script>
+<body id="body">
 </body>
 
 </html>
