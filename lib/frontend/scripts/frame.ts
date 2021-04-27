@@ -27,4 +27,11 @@ function displayGameRoom(){
     body.appendChild(canvas);
 }
 
-window.onload = displayGameRoom;
+/**
+ * Display and start drawing random stuff on the canvas.
+ */
+function starter() {
+    displayGameRoom();
+
+}
+window.onload = starter;
