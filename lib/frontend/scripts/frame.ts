@@ -1,3 +1,4 @@
+import {Tetris} from "./tetris"
 
 const GAME_CANVAS_ID = 'gameRoom';
 /**
@@ -32,6 +33,8 @@ function displayGameRoom(){
  */
 function starter() {
     displayGameRoom();
-
+    const canvas = document.getElementById(GAME_CANVAS_ID);
+    const canvasPlane = new Tetris.CanvasPlane(canvas as HTMLCanvasElement);
+    canvasPlane.draw();
 }
 window.onload = starter;
