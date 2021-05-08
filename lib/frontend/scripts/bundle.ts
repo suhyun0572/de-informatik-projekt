@@ -1,4 +1,4 @@
-export module Tetris {
+
 enum TetrisBlockType {
     IBLOCK = 0,
     JBLOCK,
@@ -13,11 +13,11 @@ enum TetrisBlockType {
 /**
  * Represents a 2D shape
  */
-export class Shape {
+class Shape {
     constructor(readonly shape:boolean[][]) {}
 }
 
-export const TETRIS_SHAPE_DEFINITION : Shape[] = [
+const TETRIS_SHAPE_DEFINITION : Shape[] = [
     // I block
     new Shape([[true, true, true, true]]),
     // J block
@@ -43,7 +43,7 @@ export const TETRIS_SHAPE_DEFINITION : Shape[] = [
 // The plane described in tetris is 20x10 size grid.
 type XCoord = 0|1|2|3|4|5|6|7|8|9;
 type YCoord = 0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19;
-export class Coord {
+class Coord {
     x: XCoord;
     y: YCoord;
     constructor(x: XCoord, y:YCoord) {
@@ -54,13 +54,13 @@ export class Coord {
 /**
  * To describe an object in a plane.
  */
-export class PlaneObject {
+class PlaneObject {
     coord : Coord
     constructor(readonly shape, coord: Coord) {
         this.coord = coord;
     }
 }
-export class GamePlane {
+class GamePlane {
     public constructor(readonly objects : PlaneObject[] = []) {}
     public addObjectAtTop(shape :Shape) {
         this.objects.push(new PlaneObject(shape, new Coord(1, 19)));
@@ -86,8 +86,9 @@ export class GamePlane {
 /**
  * A wrapper class to actually draw the canvas
  */
-export class CanvasPlane {
-    constructor(readonly canvas: HTMLCanvasElement, readonly plane : GamePlane = new GamePlane()) {
+class CanvasPlane {
+    constructor(readonly canvas: HTMLCanvasElement, 
+                readonly plane : GamePlane = new GamePlane()) {
 
     }
     draw () {
@@ -96,4 +97,41 @@ export class CanvasPlane {
     }
 }
 
+const GAME_CANVAS_ID = 'gameRoom';
+/**
+ * Empty whatever's in the body of the html and return the body element
+ */
+function emptyBody() : HTMLElement {
+    const body = document.getElementById("body");
+    while (body.lastElementChild) {
+        body.removeChild(body.lastElementChild);
+    }
+    return body;
 }
+/**
+ * Create a game room canvas and replace the HTML body with it
+ */
+function displayGameRoom(){
+    function createCenterCanvas() : HTMLElement {
+        const center = document.createElement('center');
+        const canvas = document.createElement('canvas');
+        canvas.setAttribute('class', GAME_CANVAS_ID);
+        canvas.setAttribute('id', GAME_CANVAS_ID);
+        center.appendChild(canvas);
+        return center;
+    }
+    const body = emptyBody();
+    const canvas = createCenterCanvas();
+    body.appendChild(canvas);
+}
+
+/**
+ * Display and start drawing random stuff on the canvas.
+ */
+function starter() {
+    displayGameRoom();
+    const canvas = document.getElementById(GAME_CANVAS_ID);
+    const canvasPlane = new CanvasPlane(canvas as HTMLCanvasElement); 
+    canvasPlane.draw();
+}
+window.onload = starter;

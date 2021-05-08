@@ -1,8 +1,7 @@
 load("@npm//@bazel/typescript:index.bzl", "ts_project")
 
 ts_project( 
-    name = "frontendScripts",
-    srcs = ["scripts/frame.ts",
-            "scripts/tetris.ts"],
+    name = "bundle",
+    srcs = ["scripts/bundle.ts"],
     tsconfig = "//:tsconfig.json"
 )
